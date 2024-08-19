@@ -15,16 +15,8 @@ const hasMainTranslation = (el) => {
 
 const hasSideTranslation = (el) => {
     const font = el.querySelector('font:nth-of-type(2)');
-
-    if (font === null) {
-        return false;
-    }
-
-    if (font.textContent.startsWith('[=')) {
-        return true;
-    }
-
-    return false;
+    
+    return (font !== null) && font.textContent.startsWith('[=');
 };
 
 
