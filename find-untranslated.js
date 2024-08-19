@@ -1,5 +1,10 @@
 'use strict'
 
+// Удалить все переведённые на русский язык произведения по нажатию на клавишу
+
+const KEY = 'Escape';
+
+
 const hasMainTranslation = (el) => {
     const firstNotCycleTitle = el.querySelector('a:not([title])');
     // Класс "agray" содержит только иностранный заголовок
@@ -44,7 +49,7 @@ const findTranslated = () => {
 };
 
 const onDocumentKeydown = (evt) => {
-    if (evt.key === 'Escape') {
+    if (evt.key === KEY) {
         const titles = findTranslated();
         titles.forEach(action);
 
