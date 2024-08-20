@@ -1,20 +1,19 @@
 'use strict'
 
 // Предоставить ссылку на произведение в формате [work=2088]Билет на планету Транай[/work]
+// Для https://fantlab.ru/work*
 
-const makeLink = () => {
+let workLink = '';
+
+const createLink = () => {
     const title = document.querySelector('[itemprop=name]').textContent;
     const workNumber = window.location.pathname.slice(5); // "/work2088" => "2088"
 
-    const workLink = `[work=${workNumber}]${title}[/work]`;
-
-    return workLink;
+    workLink = `[work=${workNumber}]${title}[/work]`;
 };
 
-const showLink = () => {
-  const workLink = makeLink();
-  alert(workLink);
-};
+const copyLink = () =>
+  navigator.clipboard.writeText(workLink);
 
 
 
@@ -23,6 +22,7 @@ const createButton = () => {
 
   button.textContent = 'W';
   button.style.marginLeft = '20px';
+  button.title = `Копировать для форума:\n\n${workLink}`;
 
   return button;
 };
@@ -33,8 +33,9 @@ const addButton = () => {
   
   container.append(button);  
 
-  button.addEventListener('click', showLink);
+  button.addEventListener('click', copyLink);
 };
 
 
+createLink();
 addButton();
